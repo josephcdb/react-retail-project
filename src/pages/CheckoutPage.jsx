@@ -103,7 +103,7 @@ export function CheckoutPage() {
       <form onSubmit={handleSubmit} className="space-y-3">
         <input
           name="name"
-          placeholder="Name"
+          placeholder="Enter your name"
           value={form.name}
           onChange={handleChange}
           className="w-full border p-2"
@@ -112,7 +112,7 @@ export function CheckoutPage() {
 
         <input
           name="email"
-          placeholder="Email"
+          placeholder="Enter your email address"
           value={form.email}
           onChange={handleChange}
           className="w-full border p-2"
@@ -121,7 +121,7 @@ export function CheckoutPage() {
 
         <textarea
           name="address"
-          placeholder="Shipping Address"
+          placeholder="Enter your shipping address"
           value={form.address}
           onChange={handleChange}
           className="w-full border p-2"
