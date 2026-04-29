@@ -38,23 +38,21 @@ export function Header() {
         </button>
 
         {/* AUTH SECTION */}
-        {!isAuthenticated ? (
-          <Link to="/login">Login</Link>
-        ) : (
-          <div className="flex items-center gap-2">
+        {isAuthenticated ? (
+        <div className="flex items-center gap-2">
             <span className="text-sm">
-              Hi, {user?.name}
+            Welcome, {user?.name}
             </span>
 
             <button
-              onClick={() =>
-                authDispatch({ type: "LOGOUT" })
-              }
-              className="text-red-600 text-sm"
+            onClick={() => authDispatch({ type: "LOGOUT" })}
+            className="text-red-600 text-sm"
             >
-              Logout
+            Logout
             </button>
-          </div>
+        </div>
+        ) : (
+        <Link to="/login">Login</Link>
         )}
 
         {/* DROPDOWN */}
