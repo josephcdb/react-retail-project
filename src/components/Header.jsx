@@ -24,7 +24,7 @@ export function Header() {
       
       {/* LEFT */}
       <Link to="/" className="font-bold">
-        React Retail
+        React Retail Page
       </Link>
 
       {/* RIGHT NAV */}

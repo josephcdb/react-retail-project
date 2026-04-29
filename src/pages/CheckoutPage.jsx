@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useCart } from "../hooks/useCart";
 import { getCartTotal } from "../utils/cart";
+import { useMutation } from "@tanstack/react-query";
+import { createOrder } from "../api/orders";
 
 export function CheckoutPage() {
   const { items, dispatch } = useCart();
@@ -8,62 +10,33 @@ export function CheckoutPage() {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    ShippingAddress: "",
+    address: "",
   });
 
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(null);
-  const [error, setError] = useState(null);
+  const mutation = useMutation({
+    mutationFn: createOrder,
+    onSuccess: () => {
+      dispatch({ type: "CLEAR_CART" });
+    },
+  });
 
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    mutation.mutate({
+      items,
+      customer: form,
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    setLoading(true);
-    setError(null);
-
-    try {
-      const res = await fetch("http://localhost:5174/api/orders", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          items,
-          customer: form,
-        }),
-      });
-
-      if (!res.ok) {
-        throw new Error("Order failed");
-      }
-
-      const data = await res.json();
-      setSuccess(data);
-
-      // clear cart after success
-      dispatch({ type: "CLEAR_CART" });
-
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (success) {
+  if (mutation.isSuccess) {
     return (
       <div className="p-6">
-        <h2 className="text-xl font-bold text-green-600">
+        <h2 className="text-green-600 text-xl font-bold">
           Order Confirmed
         </h2>
-        <p>Order ID: {success.id}</p>
+
+        <p>Order ID: {mutation.data.id}</p>
       </div>
     );
   }
@@ -101,42 +74,51 @@ export function CheckoutPage() {
 
       {/* FORM */}
       <form onSubmit={handleSubmit} className="space-y-3">
+
         <input
           name="name"
           placeholder="Enter your name"
           value={form.name}
-          onChange={handleChange}
+          onChange={(e) =>
+            setForm({ ...form, name: e.target.value })
+          }
           className="w-full border p-2"
           required
         />
 
         <input
           name="email"
-          placeholder="Enter your email address"
+          placeholder="Enter your Email Address"
           value={form.email}
-          onChange={handleChange}
+          onChange={(e) =>
+            setForm({ ...form, email: e.target.value })
+          }
           className="w-full border p-2"
           required
         />
 
         <textarea
           name="address"
-          placeholder="Enter your shipping address"
+          placeholder="Enter your Shipping Address"
           value={form.address}
-          onChange={handleChange}
+          onChange={(e) =>
+            setForm({ ...form, address: e.target.value })
+          }
           className="w-full border p-2"
           required
         />
 
         <button
-          disabled={loading || items.length === 0}
+          disabled={mutation.isPending || items.length === 0}
           className="bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50"
         >
-          {loading ? "Placing Order..." : "Place Order"}
+          {mutation.isPending ? "Placing Order..." : "Place Order"}
         </button>
 
-        {error && (
-          <p className="text-red-600 text-sm">{error}</p>
+        {mutation.isError && (
+          <p className="text-red-600 text-sm">
+            {mutation.error.message}
+          </p>
         )}
       </form>
     </div>
