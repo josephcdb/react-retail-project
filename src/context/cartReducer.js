@@ -4,6 +4,7 @@ export const initialState = {
 
 export function cartReducer(state, action) {
   switch (action.type) {
+
     case "ADD_ITEM": {
       const item = action.payload;
       const existing = state.items.find((i) => i.id === item.id);
@@ -32,6 +33,15 @@ export function cartReducer(state, action) {
       };
 
     case "UPDATE_QUANTITY":
+      if (action.payload.quantity <= 0) {
+        return {
+          ...state,
+          items: state.items.filter(
+            (i) => i.id !== action.payload.id
+          ),
+        };
+      }
+
       return {
         ...state,
         items: state.items.map((i) =>

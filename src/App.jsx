@@ -1,12 +1,26 @@
+import { Routes, Route } from "react-router-dom";
 import { ProductsPage } from "./pages/ProductsPage";
-import { Cart } from "./components/Cart"
+import { LoginPage } from "./pages/LoginPage";
+import { CheckoutPage } from "./pages/CheckoutPage";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import { Header } from "./components/Header";
 
 export default function App() {
   return (
     <div className="max-w-5xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6">React Retail Page</h1>
-      <Cart />
-      <ProductsPage />
+      <Header />
+      <Routes>
+        <Route path="/" element={<ProductsPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <CheckoutPage />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
     </div>
   );
 }
