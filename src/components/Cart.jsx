@@ -15,8 +15,6 @@ export function Cart() {
       {items.map((item) => (
         <div key={item.id} className="flex gap-2 items-center mb-2">
           <p className="flex-1">{item.title}</p>
-
-          {/* Quantity controls */}
           <div className="flex items-center gap-2">
             <button
               onClick={() =>

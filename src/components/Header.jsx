@@ -21,35 +21,25 @@ export function Header() {
 
   return (
     <header className="flex justify-between items-center p-4 border-b mb-6 relative">
-      
-      {/* LEFT */}
-      <Link to="/" className="font-bold">
-        React Retail Page
-      </Link>
-
-      {/* RIGHT NAV */}
+      <Link to="/" className="font-bold">React Retail Page</Link>
       <nav className="flex items-center gap-4 relative">
-
         <Link to="/">Products</Link>
-
-        {/* CART BUTTON */}
         <button onClick={() => setOpen(!open)} className="relative">
-          🛒 Cart ({getCartCount(items)})
+          Cart ({getCartCount(items)})
         </button>
 
-        {/* AUTH SECTION */}
         {isAuthenticated ? (
         <div className="flex items-center gap-2">
-            <span className="text-sm">
+          <span className="text-sm">
             Welcome, {user?.name}
-            </span>
+          </span>
 
-            <button
+          <button
             onClick={() => authDispatch({ type: "LOGOUT" })}
             className="text-red-600 text-sm"
-            >
-            Logout
-            </button>
+          >
+          Logout
+          </button>
         </div>
         ) : (
         <Link to="/login">Login</Link>
@@ -58,9 +48,7 @@ export function Header() {
         {/* DROPDOWN */}
         {open && (
           <div className="absolute right-0 top-10 w-80 bg-white border shadow-lg p-3 rounded z-50">
-
             <h3 className="font-bold mb-2">Cart</h3>
-
             {items.length === 0 && (
               <p className="text-sm text-gray-500">
                 Cart is empty
@@ -68,13 +56,11 @@ export function Header() {
             )}
 
             <div className="space-y-3 max-h-64 overflow-auto">
-
               {items.map((item) => (
                 <div
                   key={item.id}
                   className="flex justify-between items-center text-sm"
                 >
-
                   <div className="flex-1">
                     <p className="font-medium">{item.title}</p>
                     <p className="text-gray-500">
@@ -83,7 +69,6 @@ export function Header() {
                   </div>
 
                   <div className="flex items-center gap-2">
-
                     <button
                       onClick={() => updateQty(item, -1)}
                       className="px-2 py-1 bg-gray-200 rounded"
@@ -92,29 +77,23 @@ export function Header() {
                     </button>
 
                     <span>{item.quantity}</span>
-
                     <button
                       onClick={() => updateQty(item, 1)}
                       className="px-2 py-1 bg-gray-200 rounded"
                     >
                       +
                     </button>
-
                   </div>
-
                 </div>
               ))}
-
             </div>
 
-            {/* TOTAL */}
             <div className="mt-3 border-t pt-2 text-sm">
               <p className="font-semibold">
                 Total: ${getCartTotal(items).toFixed(2)}
               </p>
             </div>
 
-            {/* CHECKOUT */}
             <Link
               to="/checkout"
               onClick={() => setOpen(false)}
@@ -122,7 +101,6 @@ export function Header() {
             >
               Go to Checkout
             </Link>
-
           </div>
         )}
       </nav>
