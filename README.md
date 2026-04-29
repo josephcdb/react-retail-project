@@ -1,6 +1,6 @@
-# React Retail (Starter Project)
+# React Retail Page Project
 
-This project is the starting point for building your **React Retail** capstone application in the **Intermediate React** course.
+This project is the starting point for building your **React Retail Page ** capstone application in the **Intermediate React** course.
 
 The starter code gives you:
 
@@ -32,7 +32,7 @@ npm -v
 
 1. **Install dependencies**
 
-   From the root of the starter project:
+   Use cd React-React-Project
 
    ```bash
    npm install
@@ -71,10 +71,9 @@ npm -v
 
    Open the Vite URL in your browser. You should see:
 
-   - A simple page titled **React Retail**
+   - A simple page titled **React Retail Page**
    - A grid of products (title, category, price, and image)
-
-This is your baseline. From here, you will evolve this simple view into a full-featured capstone project.
+   - A header that has links (Products, Carts and Login) 
 
 ---
 
@@ -85,8 +84,6 @@ The mock API lives in `backend/server.js` and is started with:
 ```bash
 npm run dev:api
 ```
-
-You do **not** need to modify this file for the project, but you should know what endpoints are available.
 
 All endpoints are prefixed with `/api`:
 
@@ -146,29 +143,6 @@ The API is purely in-memory—orders are **not** persisted between runs.
 
 ---
 
-## 4. What the Starter Code Includes
-
-At a high level, the starter code provides:
-
-- A minimal React app (`src/main.jsx`, `src/App.jsx`)
-- Basic styling with Tailwind CSS (`src/index.css`)
-- A working **product grid** that:
-  - Calls `http://localhost:5174/api/products` with `fetch`
-  - Displays the products in a simple layout
-
-The starter does **not** include:
-
-- Routing (`react-router-dom`)
-- Global state management for a cart or auth
-- React Query hooks or configuration
-- Auth logic or protected routes
-- Cart page, product detail page, or checkout page
-- Any tests (unit or integration)
-
-You will add all of these as part of the project.
-
----
-
 ## 5. Your Tasks (High-Level)
 
 Using this starter, you will build out a complete React Retail experience. At a high level, you will:
@@ -203,7 +177,7 @@ Using this starter, you will build out a complete React Retail experience. At a 
      - Submits an order to `POST /api/orders`.
    - Show a confirmation view when an order is successfully placed.
 
-6. **Add testing**
+6. **Add testing** (use npm test)
 
    - Add at least one **unit test** (e.g., for cart logic or a utility function).
    - Add at least one **integration test** (e.g., simulating an “add to cart” flow).
@@ -212,14 +186,4 @@ Using this starter, you will build out a complete React Retail experience. At a 
    - Improve styling and layout as needed.
    - Make thoughtful UX decisions that match the project requirements and rubric.
 
-Refer to the course content and project rubric for detailed requirements and expectations.
-
 ---
-
-## 6. Notes
-
-- You are free to choose your own file and folder structure.
-- The starter code is intentionally minimal to give you room to design your own solution.
-- The provided mock API is intended to help you focus on the **React** side of the project. You do not need to build or host your own backend.
-
-Good luck, and have fun building your React Retail application!
