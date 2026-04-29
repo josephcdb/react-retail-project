@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { cartReducer, initialState } from "../context/cartReducer";
+import { cartReducer, initialState } from "../reducer/cartReducer";
 
-// Create an unit test to test card reducer
+// Create an unit test to test 7 test suites on cart reducer
 describe("cartReducer", () => {
   it("adds a new item with quantity 1", () => {
     const action = {

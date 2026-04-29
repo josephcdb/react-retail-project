@@ -12,9 +12,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<ProductsPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route
-          path="/checkout"
-          element={
+        <Route path="/checkout" element=
+          {
             <ProtectedRoute>
               <CheckoutPage />
             </ProtectedRoute>

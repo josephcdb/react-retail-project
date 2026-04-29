@@ -22,11 +22,7 @@ export function CheckoutPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    mutation.mutate({
-      items,
-      customer: form,
-    });
+    mutation.mutate({ items, customer: form });
   };
 
   if (mutation.isSuccess) {
@@ -35,7 +31,6 @@ export function CheckoutPage() {
         <h2 className="text-green-600 text-xl font-bold">
           Order Confirmed
         </h2>
-
         <p>Order ID: {mutation.data.id}</p>
       </div>
     );
@@ -43,14 +38,13 @@ export function CheckoutPage() {
 
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-6">
-
       <h1 className="text-2xl font-bold">Checkout</h1>
 
       {/* CART SUMMARY */}
       <div className="border p-4 rounded">
         <h2 className="font-semibold mb-2">Order Summary</h2>
 
-        {items.length === 0 ? (
+        {(items.length === 0) ? (
           <p className="text-gray-500">Cart is empty</p>
         ) : (
           <>
@@ -74,7 +68,6 @@ export function CheckoutPage() {
 
       {/* FORM */}
       <form onSubmit={handleSubmit} className="space-y-3">
-
         <input
           name="name"
           placeholder="Enter your name"
@@ -108,8 +101,7 @@ export function CheckoutPage() {
           required
         />
 
-        <button
-          disabled={mutation.isPending || items.length === 0}
+        <button disabled={mutation.isPending || (items.length === 0)}
           className="bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50"
         >
           {mutation.isPending ? "Placing Order..." : "Place Order"}

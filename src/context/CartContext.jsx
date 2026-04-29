@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
-import { useMemo, useReducer, useEffect } from "react";
-import { CartContext } from "./CartContext";
-import { cartReducer, initialState } from "./cartReducer";
+import { useMemo, useReducer, useEffect, createContext } from "react";
+import { cartReducer, initialState } from "../reducer/cartReducer";
+
+export const CartContext = createContext();
 
 export function CartProvider({ children }) {
   const [state, dispatch] = useReducer(
