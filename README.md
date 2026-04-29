@@ -80,7 +80,7 @@ This is your baseline. From here, you will evolve this simple view into a full-f
 
 ## 3. Mock API Overview
 
-The mock API lives in `api/server.js` and is started with:
+The mock API lives in `backend/server.js` and is started with:
 
 ```bash
 npm run dev:api
