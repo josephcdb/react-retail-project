@@ -46,7 +46,7 @@ export function CheckoutPage() {
 
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-4">
-      <h1 className="text-2xl font-bold">Checkout</h1>
+      <h1 className="text-2xl font-bold text-center">Checkout Details</h1>
 
       {/* CART SUMMARY */}
       <div className="border p-4 rounded">
@@ -67,7 +67,7 @@ export function CheckoutPage() {
               </div>
             ))}
 
-            <div className="mt-3 text-right font-bold text-md">
+            <div className="mt-3 text-right font-bold">
               Total: ${getCartTotal(items).toFixed(2)}
             </div>
           </>
@@ -86,7 +86,7 @@ export function CheckoutPage() {
           required
         />
 
-        <input name="email"
+        <input name="email" type="email"
           placeholder="Enter your email address"
           value={form.email}
           onChange={(e) =>
@@ -113,8 +113,9 @@ export function CheckoutPage() {
           > {mutation.isPending ? "Placing Order..." : "Place Order"}
           </button>
 
-          <button type="button"disabled={(items.length === 0)}
+          <button type="button"
             aria-disabled={items.length === 0}
+            disabled={!form.name.trim() && !form.email.trim() && !form.address.trim()}
             className="bg-red-600 text-white px-4 py-2 rounded disabled:opacity-50"
             onClick={handleClear}
           > Clear

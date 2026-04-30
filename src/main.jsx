@@ -6,6 +6,7 @@ import { queryClient } from "./lib/queryClient";
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
 import { BrowserRouter } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -14,6 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <AuthProvider>
         <CartProvider>
           <App />
+          <Toaster position="top-right" />
         </CartProvider>
       </AuthProvider>
     </BrowserRouter>

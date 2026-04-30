@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProduct } from "../api/products";
 import { useCart } from "../hooks/useCart";
+import toast from "react-hot-toast";
 
 export function ProductDetailPage() {
   const { id } = useParams();
@@ -26,11 +27,12 @@ export function ProductDetailPage() {
         <p className="mt-2">{product.description}</p>
         <p className="text-lg font-semibold mt-4">${product.price.toFixed(2)}</p>
         <div className="flex justify-center gap-4 mt-4">
-          <button onClick={() =>
-            dispatch({ type: "ADD_ITEM", payload: product })
-          }
-            className="mt-4 bg-blue-600 text-white px-4 py-2 rounded"
-            aria-label={`Add ${product.title} to cart`}
+          <button onClick={() => {
+            dispatch({ type: "ADD_ITEM", payload: product });
+            toast.success(`${product.title} added to cart`);
+          }}
+          className="mt-4 bg-blue-600 text-white px-4 py-2 rounded"
+          aria-label={`Add ${product.title} to cart`}
           > Add to Cart
           </button>
           <button onClick={() => navigate('/')}

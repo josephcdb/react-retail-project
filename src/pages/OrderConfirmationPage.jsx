@@ -64,7 +64,7 @@ export function OrderConfirmationPage() {
             </div>
             ))}
 
-            <div className="mt-2 font-bold">
+            <div className="mt-2 text-right font-bold">
                 Total: ${getCartTotal(items).toFixed(2)}
             </div>
         </div>
