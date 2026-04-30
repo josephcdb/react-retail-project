@@ -73,8 +73,30 @@ npm -v
 
    - A simple page titled **React Retail Page**
    - A grid of products (title, category, price, and image)
-   - A header that has links (Products, Carts and Login) 
-
+   - Add to Cart button on Product List and Detail Page
+   - A header that has links (Products, Cart and Login)
+   - When you click Login, you should see:
+      - Name field
+      - Login and Clear button
+   - If Cart is empty and you try to click this link, you should see:
+      - Cart is empty
+      - Go Shopping button
+   - If you are on Product List and Detail Page trying to add any item to cart, you should see:
+      - A toast notification message on top right of this screen
+      - New cart number added on Cart link
+   - If you are on Cart Page, you should see:
+      - Cart details with total summary
+      - Proceed to Checkout button
+   - If you are on Checkout Page, you should see:
+      - If you have not logged in, it redirects you to login page first before going to checkout page
+      - If you are logged before, you should see:
+         - Order Details
+         - Form (name, email, address)
+         - Two buttons (Place Order and Clear)
+      - If the form is validated correctly and you click Place Order, it redirects to order confirmation page and you should see:
+         - Order Details
+         - Customer Details
+         - A button (Continue Shopping)
 ---
 
 ## 3. Mock API Overview
@@ -143,7 +165,7 @@ The API is purely in-memory—orders are **not** persisted between runs.
 
 ---
 
-## 5. Your Tasks (High-Level)
+## 5. Tasks (High-Level)
 
 Using this starter, you will build out a complete React Retail experience. At a high level, you will:
 
@@ -177,7 +199,7 @@ Using this starter, you will build out a complete React Retail experience. At a 
      - Submits an order to `POST /api/orders`.
    - Show a confirmation view when an order is successfully placed.
 
-6. **Add testing** (use npm test)
+6. **Add testing** (run the script by typing npm test)
 
    - Add at least one **unit test** (e.g., for cart logic or a utility function).
    - Add at least one **integration test** (e.g., simulating an “add to cart” flow).
