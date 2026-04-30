@@ -6,7 +6,7 @@ export function ProductCard({ product }) {
   const { dispatch } = useCart();
 
   return (
-    <div className="border rounded-lg p-4">
+    <div className="border text-center rounded-lg p-4">
       <Link to={`/products/${product.id}`}>
         <img src={product.image} alt={product.title} />
         <h2><b>{product.title}</b></h2>
@@ -17,7 +17,7 @@ export function ProductCard({ product }) {
         onClick={() => {
           dispatch({ type: "ADD_ITEM", payload: product });
         }}
-        className="cursor-pointer mt-2 bg-blue-600 text-white px-3 py-1 rounded"
+        className="mt-2 w-full text-center bg-blue-600 text-white px-3 py-1 rounded"
         aria-label={`Add ${product.title} to cart`}
       > Add to Cart
       </button>
@@ -27,6 +27,7 @@ export function ProductCard({ product }) {
 
 ProductCard.propTypes = {
   product: PropTypes.shape({
+    id: PropTypes.number,
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,

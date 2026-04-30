@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../hooks/useCart";
 import { getCartTotal } from "../utils/cart";
-import { useMutation } from "@tanstack/react-query";
 import { createOrder } from "../api/orders";
+import { useMutation } from "@tanstack/react-query";
 
 export function CheckoutPage() {
   const { items, dispatch } = useCart();
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     name: "",
@@ -15,8 +17,17 @@ export function CheckoutPage() {
 
   const mutation = useMutation({
     mutationFn: createOrder,
-    onSuccess: () => {
+    onSuccess: (data) => {
+      // persist order
+      localStorage.setItem("lastOrder", JSON.stringify(data));
+
+      // clear cart
       dispatch({ type: "CLEAR_CART" });
+
+      // redirect to order confirmation page
+      navigate("/order-confirmation", {
+        state: { order: data }
+      });
     },
   });
 
@@ -25,17 +36,16 @@ export function CheckoutPage() {
     mutation.mutate({ items, customer: form });
   };
 
-  if (mutation.isSuccess) {
-    return (
-      <div className="p-6">
-        <h2 className="text-green-600 text-xl font-bold">Order Confirmed</h2>
-        <p>Order ID: {mutation.data.id}</p>
-      </div>
-    );
-  }
+  const handleClear = () => {
+    setForm({
+      name: "",
+      email: "",
+      address: "",
+    });
+  };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 space-y-6">
+    <div className="max-w-2xl mx-auto p-6 space-y-4">
       <h1 className="text-2xl font-bold">Checkout</h1>
 
       {/* CART SUMMARY */}
@@ -57,7 +67,7 @@ export function CheckoutPage() {
               </div>
             ))}
 
-            <div className="mt-2 font-bold">
+            <div className="mt-3 text-right font-bold text-md">
               Total: ${getCartTotal(items).toFixed(2)}
             </div>
           </>
@@ -96,11 +106,20 @@ export function CheckoutPage() {
           required
         />
 
-        <button disabled={mutation.isPending || (items.length === 0)}
-          aria-disabled={mutation.isPending || items.length === 0}
-          className="bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50"
-        > {mutation.isPending ? "Placing Order..." : "Place Order"}
-        </button>
+        <div className="flex justify-center gap-4 mt-4">
+          <button disabled={mutation.isPending || (items.length === 0)}
+            aria-disabled={mutation.isPending || items.length === 0}
+            className="bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50"
+          > {mutation.isPending ? "Placing Order..." : "Place Order"}
+          </button>
+
+          <button type="button"disabled={(items.length === 0)}
+            aria-disabled={items.length === 0}
+            className="bg-red-600 text-white px-4 py-2 rounded disabled:opacity-50"
+            onClick={handleClear}
+          > Clear
+          </button>
+        </div>
 
         {mutation.isError && (
           <p className="text-red-600 text-sm">

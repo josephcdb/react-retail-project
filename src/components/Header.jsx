@@ -21,33 +21,33 @@ export function Header() {
 
   return (
     <header className="flex justify-between items-center p-4 border-b mb-6 relative">
-      <Link to="/" className="font-bold">React Retail Page</Link>
-      <nav className="flex items-center gap-4 relative">
-        <Link to="/">Products</Link>
-        <button onClick={() => setOpen(!open)} className="relative">
+      <Link to="/" className="font-bold text-xs sm:text-sm">React Retail Page</Link>
+      <nav className="flex items-center gap-2 sm:gap-4 text-sm sm:text-base relative">
+        <Link to="/" className="whitespace-nowrap">Products</Link>
+        <button onClick={() => setOpen(!open)} className="relative whitespace-nowrap">
           Cart ({getCartCount(items)})
         </button>
 
         {isAuthenticated ? (
-        <div className="flex items-center gap-2">
-          <span className="text-sm">
+        <div className="flex items-center gap-2 whitespace-nowrap">
+          <span className="text-xs sm:text-sm">
             Welcome, {user?.name}
           </span>
 
           <button
             onClick={() => authDispatch({ type: "LOGOUT" })}
-            className="text-red-600 text-sm"
+            className="text-red-600 text-xs sm:text-sm"
           >
           Logout
           </button>
         </div>
         ) : (
-        <Link to="/login">Login</Link>
+        <Link to="/login" className="whitespace-nowrap">Login</Link>
         )}
 
         {/* DROPDOWN */}
         {open && (
-          <div className="absolute right-0 top-10 w-80 bg-white border shadow-lg p-3 rounded z-50">
+          <div className="absolute right-0 top-10 w-64 sm:w-72 bg-white border shadow-lg p-3 rounded z-50">
             <h3 className="font-bold mb-2">Cart</h3>
             {items.length === 0 && (
               <p className="text-sm text-gray-500">
@@ -59,7 +59,7 @@ export function Header() {
               {items.map((item) => (
                 <div
                   key={item.id}
-                  className="flex justify-between items-center text-sm"
+                  className="flex justify-between items-start text-sm py-2 border-b last:border-b-0"
                 >
                   <div className="flex-1">
                     <p className="font-medium">{item.title}</p>

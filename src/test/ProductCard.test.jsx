@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router-dom";
 import { ProductCard } from "../components/ProductCard";
 
 // create stable mock
@@ -13,6 +14,10 @@ vi.mock("../hooks/useCart", () => ({
   }),
 }));
 
+const renderWithRouter = (ui) => {
+  return render(<MemoryRouter>{ui}</MemoryRouter>);
+};
+
 // Create an integration test to test 2 test suites on product card
 describe("ProductCard", () => {
   // Test Suite 1: Make sure it renders product correctly
@@ -24,8 +29,8 @@ describe("ProductCard", () => {
       price: 99.99,
     };
 
-    render(<ProductCard product={product} />);
-
+    renderWithRouter(<ProductCard product={product} />);
+    
     expect(screen.getByText("Test Product")).toBeInTheDocument();
   });
 
@@ -40,9 +45,13 @@ describe("ProductCard", () => {
       price: 99.99,
     };
 
-    render(<ProductCard product={product} />);
+    renderWithRouter(<ProductCard product={product} />);
+    
+    const button = screen.getByRole("button", {
+      name: new RegExp(`add ${product.title} to cart`, "i")
+    });
 
-    await user.click(screen.getByText(/add to cart/i));
+    await user.click(button);
 
     expect(dispatchMock).toHaveBeenCalledTimes(1);
     expect(dispatchMock).toHaveBeenCalledWith({

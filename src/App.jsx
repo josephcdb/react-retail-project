@@ -1,10 +1,11 @@
 import { Routes, Route } from "react-router-dom";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import { Header } from "./components/Header";
 import { ProductsPage } from "./pages/ProductsPage";
 import { ProductDetailPage } from "./pages/ProductDetailPage";
 import { LoginPage } from "./pages/LoginPage";
 import { CheckoutPage } from "./pages/CheckoutPage";
-import { ProtectedRoute } from "./components/ProtectedRoute";
-import { Header } from "./components/Header";
+import { OrderConfirmationPage } from "./pages/OrderConfirmationPage";
 
 export default function App() {
   return (
@@ -14,13 +15,13 @@ export default function App() {
         <Route path="/" element={<ProductsPage />} />
         <Route path="/products/:id" element={<ProductDetailPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/checkout" element=
-          {
-            <ProtectedRoute>
-              <CheckoutPage />
-            </ProtectedRoute>
-          }
+        <Route path="/checkout" element= {
+          <ProtectedRoute>
+            <CheckoutPage />
+          </ProtectedRoute>
+        }
         />
+        <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
       </Routes>
     </div>
   );

@@ -15,6 +15,7 @@ export function AuthProvider({ children }) {
   );
 
   useEffect(() => {
+    // persist login in state
     localStorage.setItem("auth", JSON.stringify(state));
   }, [state]);
 
