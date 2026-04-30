@@ -21,6 +21,8 @@ export function LoginPage() {
     navigate(from, { replace: true });
   }
 
+  const handleClear = () => { setName(""); };
+
   return (
     <div className="min-h-[70vh] flex items-center justify-center bg-gray-50 px-4">
       <div className="w-full max-w-sm bg-white border rounded-xl shadow-sm p-6 space-y-4">
@@ -30,6 +32,8 @@ export function LoginPage() {
         </h1>
 
         <input
+          id="name"
+          autoComplete="name"
           className="w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Enter your name"
           value={name}

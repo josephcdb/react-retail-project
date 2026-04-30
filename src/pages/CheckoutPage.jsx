@@ -77,6 +77,8 @@ export function CheckoutPage() {
       {/* FORM */}
       <form onSubmit={handleSubmit} className="space-y-3">
         <input name="name"
+          id="name"
+          autoComplete="name"
           placeholder="Enter your name"
           value={form.name}
           onChange={(e) =>
@@ -86,7 +88,10 @@ export function CheckoutPage() {
           required
         />
 
-        <input name="email" type="email"
+        <input name="email"
+          type="email" 
+          id="email"
+          autoComplete="email"
           placeholder="Enter your email address"
           value={form.email}
           onChange={(e) =>
@@ -97,6 +102,8 @@ export function CheckoutPage() {
         />
 
         <textarea name="address"
+          id="address"
+          autoComplete="address"
           placeholder="Enter your shipping address"
           value={form.address}
           onChange={(e) =>

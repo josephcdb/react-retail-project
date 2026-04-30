@@ -36,7 +36,7 @@ export function OrderConfirmationPage() {
 
     return (
         <div className="max-w-2xl mx-auto p-6 space-y-6">
-        <h1 className="text-2xl font-bold text-green-600">Order Confirmed!</h1>
+        <h1 className="text-2xl font-bold text-center text-green-600">Your order is confirmed</h1>
 
         {/* ORDER INFO */}
         <div className="border p-4 rounded">
