@@ -81,7 +81,7 @@ export function CheckoutPage() {
 
         <input
           name="email"
-          placeholder="Enter your Email Address"
+          placeholder="Enter your email address"
           value={form.email}
           onChange={(e) =>
             setForm({ ...form, email: e.target.value })
@@ -92,7 +92,7 @@ export function CheckoutPage() {
 
         <textarea
           name="address"
-          placeholder="Enter your Shipping Address"
+          placeholder="Enter your shipping address"
           value={form.address}
           onChange={(e) =>
             setForm({ ...form, address: e.target.value })

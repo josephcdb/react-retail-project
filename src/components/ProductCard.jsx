@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
 import { useCart } from "../hooks/useCart";
+import { Link } from "react-router-dom";
 
 export function ProductCard({ product }) {
   const { dispatch } = useCart();
 
   return (
     <div className="border rounded-lg p-4">
-      <img src={product.image} alt={product.title} />
-      <h2>{product.title}</h2>
+      <Link to={`/products/${product.id}`}>
+        <img src={product.image} alt={product.title} />
+        <h2><b>{product.title}</b></h2>
+      </Link>
       <p>{product.category}</p>
       <p>${product.price.toFixed(2)}</p>
       <button

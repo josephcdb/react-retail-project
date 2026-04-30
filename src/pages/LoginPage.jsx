@@ -26,7 +26,7 @@ export function LoginPage() {
     <div className="p-6">
       <input
         className="border p-2"
-        placeholder="Enter name"
+        placeholder="Enter your name"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />

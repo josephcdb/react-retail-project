@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { ProductsPage } from "./pages/ProductsPage";
+import { ProductDetailPage } from "./pages/ProductDetailPage";
 import { LoginPage } from "./pages/LoginPage";
 import { CheckoutPage } from "./pages/CheckoutPage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
@@ -11,6 +12,7 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<ProductsPage />} />
+        <Route path="/products/:id" element={<ProductDetailPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/checkout" element=
           {
