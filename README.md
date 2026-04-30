@@ -1,14 +1,12 @@
 # React Retail Page Project
 
-This project is the starting point for building your **React Retail Page ** capstone application in the **Intermediate React** course.
+This project is to build **React Retail Page **.
 
-The starter code gives you:
-
+Goal:
 - A minimal React app created with Vite
 - A mock API server that returns a list of products
 - A simple grid view that renders products on the page using basic `fetch`
-
-Everything else (routing, cart behavior, auth, React Query, checkout flow, tests, etc.) is up to you to design and implement.
+- Design and implement routing, cart behavior, auth, React Query, checkout flow, tests, etc.
 
 ---
 
@@ -32,9 +30,8 @@ npm -v
 
 1. **Install dependencies**
 
-   Use cd React-React-Project
-
    ```bash
+   cd React-React-Project
    npm install
    ```
 
@@ -67,7 +64,7 @@ npm -v
    http://localhost:5173
    ```
 
-4. **View the starter app**
+4. **View the starter app in overall**
 
    Open the Vite URL in your browser. You should see:
 
