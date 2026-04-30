@@ -3,9 +3,10 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import { Header } from "./components/Header";
 import { ProductsPage } from "./pages/ProductsPage";
 import { ProductDetailPage } from "./pages/ProductDetailPage";
-import { LoginPage } from "./pages/LoginPage";
+import { CartPage } from "./pages/CartPage";
 import { CheckoutPage } from "./pages/CheckoutPage";
 import { OrderConfirmationPage } from "./pages/OrderConfirmationPage";
+import { LoginPage } from "./pages/LoginPage";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<ProductsPage />} />
         <Route path="/products/:id" element={<ProductDetailPage />} />
+        <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/checkout" element= {
           <ProtectedRoute>
