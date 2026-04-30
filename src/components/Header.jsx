@@ -1,23 +1,11 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../hooks/useCart";
 import { useAuth } from "../hooks/useAuth";
-import { getCartCount, getCartTotal } from "../utils/cart";
+import { getCartCount } from "../utils/cart";
 
 export function Header() {
-  const { items, dispatch } = useCart();
+  const { items } = useCart();
   const { isAuthenticated, user, dispatch: authDispatch } = useAuth();
-  const [open, setOpen] = useState(false);
-
-  const updateQty = (item, delta) => {
-    dispatch({
-      type: "UPDATE_QUANTITY",
-      payload: {
-        id: item.id,
-        quantity: item.quantity + delta,
-      },
-    });
-  };
 
   return (
     <header className="flex justify-between items-center p-4 border-b mb-6 relative">
