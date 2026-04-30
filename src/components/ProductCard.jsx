@@ -18,8 +18,8 @@ export function ProductCard({ product }) {
           dispatch({ type: "ADD_ITEM", payload: product });
         }}
         className="cursor-pointer mt-2 bg-blue-600 text-white px-3 py-1 rounded"
-      >
-        Add to Cart
+        aria-label={`Add ${product.title} to cart`}
+      > Add to Cart
       </button>
     </div>
   );

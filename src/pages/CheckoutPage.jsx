@@ -28,9 +28,7 @@ export function CheckoutPage() {
   if (mutation.isSuccess) {
     return (
       <div className="p-6">
-        <h2 className="text-green-600 text-xl font-bold">
-          Order Confirmed
-        </h2>
+        <h2 className="text-green-600 text-xl font-bold">Order Confirmed</h2>
         <p>Order ID: {mutation.data.id}</p>
       </div>
     );
@@ -68,8 +66,7 @@ export function CheckoutPage() {
 
       {/* FORM */}
       <form onSubmit={handleSubmit} className="space-y-3">
-        <input
-          name="name"
+        <input name="name"
           placeholder="Enter your name"
           value={form.name}
           onChange={(e) =>
@@ -79,8 +76,7 @@ export function CheckoutPage() {
           required
         />
 
-        <input
-          name="email"
+        <input name="email"
           placeholder="Enter your email address"
           value={form.email}
           onChange={(e) =>
@@ -90,8 +86,7 @@ export function CheckoutPage() {
           required
         />
 
-        <textarea
-          name="address"
+        <textarea name="address"
           placeholder="Enter your shipping address"
           value={form.address}
           onChange={(e) =>
@@ -102,9 +97,9 @@ export function CheckoutPage() {
         />
 
         <button disabled={mutation.isPending || (items.length === 0)}
+          aria-disabled={mutation.isPending || items.length === 0}
           className="bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50"
-        >
-          {mutation.isPending ? "Placing Order..." : "Place Order"}
+        > {mutation.isPending ? "Placing Order..." : "Place Order"}
         </button>
 
         {mutation.isError && (

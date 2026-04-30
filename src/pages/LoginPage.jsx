@@ -24,18 +24,15 @@ export function LoginPage() {
 
   return (
     <div className="p-6">
-      <input
-        className="border p-2"
+      <input className="border p-2"
         placeholder="Enter your name"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
 
-      <button
-        onClick={handleLogin}
+      <button onClick={handleLogin}
         className="ml-2 bg-blue-600 text-white px-3 py-1 rounded"
-      >
-        Login
+      > Login
       </button>
     </div>
   );
